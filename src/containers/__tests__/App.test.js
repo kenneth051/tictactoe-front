@@ -1,14 +1,14 @@
 import React from "react";
 import { shallow } from "enzyme";
 import App from "../App";
-import {FakeGame} from "../../util/fakeGame"
+import { FakeGame } from "../../fakes/fakeGame";
 
-describe("App", function() {
+describe("App", function () {
   var app;
   beforeEach(() => {
     app = shallow(<App />);
   });
-  it("should render app without fail", function() {
+  it("should render app without fail", function () {
     shallow(<App />);
   });
   it("should contain div tags", () => {
@@ -24,11 +24,9 @@ describe("App", function() {
     expect(div.length).toBe(1);
   });
   it("should start a new game when new game button is clicked", () => {
-   const new_game = new FakeGame();
-    const app = shallow(<App game={new_game}/>);
-     app.find("button")
-      .first()
-      .simulate("click");
+    const new_game = new FakeGame();
+    const app = shallow(<App game={new_game} />);
+    app.find("button").first().simulate("click");
     expect(new_game.gameId).not.toBe(0);
   });
 });
