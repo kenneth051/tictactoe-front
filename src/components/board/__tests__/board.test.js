@@ -1,19 +1,20 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import Board from "../board";
 
-const getPosition = jest.fn();
+const play = jest.fn();
+const fakeboard = ["", "", "", "", "", "", "", "", ""];
 
 describe("Board", () => {
   var board;
   beforeEach(() => {
-    board = shallow(<Board />);
+    board = shallow(<Board game_board={fakeboard} play={play} />);
   });
   it("should render a header without fail", () => {
-    shallow(<Board />);
+    shallow(<Board game_board={fakeboard} play={play} />);
   });
-  it("should ensure that the game squares are clickable", () => {
-    board.find(".item2").simulate("click");
-    // expect(getPosition).toHaveBeenCalled();
+  it("should render a header without fail", () => {
+    const cell = board.find("Cell");
+    expect(cell.length).toBe(9);
   });
 });
