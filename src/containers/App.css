@@ -1,0 +1,15 @@
+.newgame{
+margin-top:5px;
+
+}
+.playbuttons{
+    padding-top:30px;
+    width:50%;
+    margin: 0 auto;
+}
+.playerone{
+    float:left;
+}
+.playertwo{
+    float:right;
+}
