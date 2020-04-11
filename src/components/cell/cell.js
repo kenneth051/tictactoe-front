@@ -2,10 +2,9 @@ import React from "react";
 
 const Cell = props => {
   const { position, game_board, play } = props;
-  const cssClass = `item item${position}`;
   return (
     <div
-      className={cssClass}
+      className="item"
       onClick={() => {
         play(position);
       }}
