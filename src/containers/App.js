@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Header from "../components/header/headers";
 import Board from "../components/board/board";
+import Language from "../components/language/language";
 
 toast.configure();
 
@@ -16,21 +17,30 @@ function App(props) {
     setPosition(position);
     game.playGame(position, toast, setBoard);
   };
+  const newGame = () => {
+    setBoard(["", "", "", "", "", "", "", "", ""]);
+    game.startGame()
+  };
 
   return (
     <div className="App">
       <ToastContainer />
       <div className="container">
         <Header />
-        <div className="newgame text-center">
-          <button
-            className="btn btn-success newgamebutton"
-            onClick={() => game.startGame(Math.round(Math.random() * 10000))}
-          >
-            New Game?
+        <div className="newgame">
+          <button className="btn newgamebutton" onClick={() => newGame()}>
+            Click For New Game
           </button>
         </div>
-        <Board play={Play} game_board={board} />
+
+        <div className="row">
+          <div className="col-lg-2">
+            <Language game={game} />
+          </div>
+          <div className="col-lg-10">
+            <Board play={Play} game_board={board} />
+          </div>
+        </div>
       </div>
     </div>
   );
