@@ -13,9 +13,15 @@ describe("Game", () => {
     game = new Game(fakeActions, fakeutil);
   });
   it("should set a new gameId", async () => {
-    await game.startGame(4);
-
-    expect(game.gameId).toEqual(4);
+    await game.startGame();
+    expect(game.gameId).toBe("8bae8f80");
+  });
+  it("should get the default language as english ", () => {
+    expect(game.language).toBe("en");
+  });
+  it("should change the language", () => {
+    game.setlanguage("spanish");
+    expect(game.language).toBe("spanish");
   });
   it("should expect getErrorMessages to return all errors", () => {
     const errors = { error: { msg: "error1", msg1: "errors" } };
@@ -52,15 +58,15 @@ describe("Game", () => {
       expect(fakeutil.displayErrorsisCalled()).toEqual(true);
     });
   });
-  it("should expect #gamePlayer to return player 1 for first move", () => {
-      expect(game.gamePlayer()).toEqual(1);
+  it("should expect #getGamePlayer to return player 1 for first move", () => {
+    expect(game.getGamePlayer()).toEqual(1);
   });
-  it("should expect #gamePlayer to return player 2 for second move", () => {
-    game.trackPlayers = [1]
-    expect(game.gamePlayer()).toEqual(2);
-});
-it("should expect #gamePlayer to return player 1 for third move", () => {
-  game.trackPlayers = [1,2]
-  expect(game.gamePlayer()).toEqual(1);
-});
+  it("should expect #getGamePlayer to return player 2 for second move", () => {
+    game.trackPlayers = [1];
+    expect(game.getGamePlayer()).toEqual(2);
+  });
+  it("should expect #getGamePlayer to return player 1 for third move", () => {
+    game.trackPlayers = [1, 2];
+    expect(game.getGamePlayer()).toEqual(1);
+  });
 });

@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow} from "enzyme";
+import { shallow } from "enzyme";
 import Cell from "../cell";
 
 const play = jest.fn();
@@ -9,6 +9,9 @@ describe("Board", () => {
   var cell;
   beforeEach(() => {
     cell = shallow(<Cell position={2} game_board={fakeboard} play={play} />);
+  });
+  it("should render cell component without  crashing", () => {
+    shallow(<Cell position={2} game_board={fakeboard} play={play} />);
   });
 
   it("should ensure that the game squares are clickable", () => {

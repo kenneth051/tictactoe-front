@@ -2,14 +2,20 @@
 margin-top:5px;
 
 }
-.playbuttons{
-    padding-top:30px;
-    width:50%;
-    margin: 0 auto;
-}
 .playerone{
     float:left;
 }
 .playertwo{
     float:right;
+}
+.border{
+    border:2px solid black;
+}
+.newgamebutton{
+    font-weight:bold !important;
+    background-color:#7acfd6 !important;
+    color:white !important;
+}
+.container{
+    height:1000px;
 }

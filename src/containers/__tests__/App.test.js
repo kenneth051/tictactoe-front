@@ -13,7 +13,7 @@ describe("App", function () {
   });
   it("should contain div tags", () => {
     const div = app.find("div");
-    expect(div.length).toBe(3);
+    expect(div.length).toBe(6);
   });
   it("should render header component", () => {
     const div = app.find("Header");
@@ -21,6 +21,10 @@ describe("App", function () {
   });
   it("should render body component", () => {
     const div = app.find("Board");
+    expect(div.length).toBe(1);
+  });
+  it("should render language component", () => {
+    const div = app.find("Language");
     expect(div.length).toBe(1);
   });
   it("should start a new game when new game button is clicked", () => {
