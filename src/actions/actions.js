@@ -3,7 +3,7 @@ const axios = require("axios");
 export class Actions {
   startGame(id) {
     return axios
-      .post("http://localhost:9292/startgame", {
+      .post("https://emmanuel-tic-tac-toe.herokuapp.com/startgame", {
         game_id: id
       })
       .then(response => {
@@ -13,7 +13,7 @@ export class Actions {
 
   playGame(gameId, position, player, language) {
     return axios
-      .post("http://localhost:9292/play", {
+      .post("https://emmanuel-tic-tac-toe.herokuapp.com/play", {
         game_id: gameId,
         position: position,
         player: player,
