@@ -6,8 +6,13 @@ export class Game {
     this.action = action;
     this.util = util;
     this.trackPlayers = [];
+    this.language = "en";
   }
-  gamePlayer() {
+  setlanguage(language) {
+    this.language = language;
+  }
+
+  getGamePlayer() {
     const currentPlayer = { 1: 2, 2: 1 };
 
     if (this.trackPlayers.length === 0) {
@@ -17,14 +22,14 @@ export class Game {
       const nextPlayer = currentPlayer[lastPlayer];
       this.trackPlayers.push(nextPlayer);
     }
-
     return this.trackPlayers[this.trackPlayers.length - 1];
   }
 
-  startGame = async id => {
-    const response = await this.action.startGame(id);
+  startGame = async () => {
+    this.trackPlayers = [];
+    const response = await this.action.startGame();
     if (response.hasOwnProperty("game_data")) {
-      this.gameId = id;
+      this.gameId = Object.keys(response["game_data"])[0];
     }
   };
   getErrorMessages = (error_messages_array, response) => {
@@ -38,7 +43,12 @@ export class Game {
   };
   gameOutput = async ({ gameId = this.gameId, position, player }) => {
     var error_messages = [];
-    const response = await this.action.playGame(gameId, position, player);
+    const response = await this.action.playGame(
+      gameId,
+      position,
+      player,
+      this.language
+    );
     return {
       board: response.game,
       error_messages: this.getErrorMessages(error_messages, response),
@@ -49,7 +59,7 @@ export class Game {
   playGame = async (position, toast, setBoard) => {
     const response = await this.gameOutput({
       position: position,
-      player: this.gamePlayer()
+      player: this.getGamePlayer()
     });
     this.util.displayBoardMoves(response.board, setBoard);
     this.util.displayWinMessage(response, toast);
