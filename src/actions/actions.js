@@ -11,12 +11,13 @@ export class Actions {
       });
   }
 
-  playGame(gameId, position, player) {
+  playGame(gameId, position, player, language) {
     return axios
       .post("http://localhost:9292/play", {
         game_id: gameId,
         position: position,
-        player: player
+        player: player,
+        lang: language
       })
       .then(response => {
         return response.data;
