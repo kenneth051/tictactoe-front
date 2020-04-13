@@ -6,7 +6,7 @@ const mock = new MockAdapter(axios);
 const actions = new Actions();
 
 describe("Actions", () => {
-  it("shold expect #startGameAction to send a request", done => {
+  it("should expect #startGameAction to send a request", done => {
     const response_data = {
       message: "game started successfully",
       game_data: { "1": " " }
@@ -18,7 +18,7 @@ describe("Actions", () => {
     });
   });
 
-  it("shold expect #playGame to send a request", done => {
+  it("should expect #playGame to send a request", done => {
     const response_data = {
       game: []
     };
