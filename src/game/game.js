@@ -1,10 +1,10 @@
 import { Display } from "../display/display";
 
 export class Game {
-  constructor(action, util = new Display()) {
+  constructor(action, display = new Display()) {
     this.gameId = 0;
     this.action = action;
-    this.util = util;
+    this.display = display;
     this.trackPlayers = [];
     this.language = "en";
     this.win = false;
@@ -64,10 +64,10 @@ export class Game {
         position: position,
         player: this.getGamePlayer()
       });
-      this.util.displayBoardMoves(response.board, setBoard);
-      this.util.displayWinMessage(response, toast, this);
-      this.util.displayDrawMessage(response, toast);
-      this.util.displayErrors(response.error_messages, toast);
+      this.display.displayBoardMoves(response.board, setBoard);
+      this.display.displayWinMessage(response, toast, this);
+      this.display.displayDrawMessage(response, toast);
+      this.display.displayErrors(response.error_messages, toast);
     }
   };
 }

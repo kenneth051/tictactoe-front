@@ -19,7 +19,8 @@ describe("Display", () => {
   it("should call success toast if we have a winning message", () => {
     const toast = new FakeToast();
     const response = { win: true };
-    util.displayWinMessage(response, toast);
+    const fakeWin ={win:false}
+    util.displayWinMessage(response, toast,fakeWin);
     expect(toast.successIsCalled()).toBe(true);
   });
   it("should not call success toast if we have no winning message", () => {

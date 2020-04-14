@@ -24,8 +24,9 @@ export class FakeDisplay {
   displayBoardMovesisCalled() {
     return this.getboardiscalled;
   }
-  displayWinMessage(response, toast) {
+  displayWinMessage(response, toast, game) {
     this.displaywinmessageiscalled = true;
+    game.win = true;
   }
   displayWinMessageisCalled() {
     return this.displaywinmessageiscalled;
@@ -48,18 +49,18 @@ export class FakeToast {
   constructor() {
     this.isCalled = false;
   }
-  success = (message, {}) => {
+  success = message => {
     this.isCalled = true;
     return true;
   };
-  info = (message, {}) => {
+  info = message => {
     this.isCalled = true;
     return true;
   };
   successIsCalled() {
     return this.isCalled;
   }
-  error = (message, {}) => {
+  error = message => {
     this.isCalled = true;
     return true;
   };
