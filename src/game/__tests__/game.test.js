@@ -43,14 +43,29 @@ describe("Game", () => {
       expect(fakeutil.displayBoardMovesisCalled()).toEqual(true);
     });
   });
-  it("should expect #playGame to call the displayWinMessage", () => {
+  it("should expect #isGameWon to call the displayWinMessage", () => {
+    game.isGameWon({ win: true }, {});
+    expect(fakeutil.displayWinMessageisCalled()).toEqual(true);
+  });
+  it("should expect win is set t0 true when #isGameWon is called", () => {
+    expect(game.win).toEqual(false);
+    game.isGameWon({ win: true }, {});
+    expect(game.win).toEqual(true);
+  });
+  it("should expect #isGameDrawn to call the displayDrawMessage", () => {
+    game.isGameDrawn({ draw: true }, {});
+    expect(fakeutil.displayDrawMessageisCalled()).toEqual(true);
+  });
+  it("should expect #playGame to call the isGameWon", () => {
+    game.isGameWon = jest.fn();
     game.playGame(4, 1, 1, {}, {}).then(() => {
-      expect(fakeutil.displayWinMessageisCalled()).toEqual(true);
+      expect(game.isGameWon).toHaveBeenCalled();
     });
   });
-  it("should expect #playGame to call the displayDrawMessage", () => {
+  it("should expect #playGame to call the isGameDrawn", () => {
+    game.isGameDrawn = jest.fn();
     game.playGame(4, 1, 1, {}, {}).then(() => {
-      expect(fakeutil.displayDrawMessageisCalled()).toEqual(true);
+      expect(game.isGameDrawn).toHaveBeenCalled();
     });
   });
   it("should expect #playGame to call the displayErrors", () => {

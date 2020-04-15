@@ -13,23 +13,21 @@ const Language = props => {
     setLanguage(e.target.value);
     game.setlanguage(e.target.value);
   };
-  const languageObj = {
-    English: "en",
-    French: "fr",
-    Kinyarwanda: "krw"
-  };
-  let gameLanguages = [];
-  for (const languageKey in languageObj) {
-    gameLanguages.push(
-      <Radio
-        key={languageKey}
-        onChange={onChange}
-        language={language}
-        languageValue={languageObj[languageKey]}
-        languageLabel={languageKey}
-      />
-    );
-  }
+  const languageMap = [
+    ["English", "en"],
+    ["French", "fr"],
+    ["Kinyarwanda", "krw"]
+  ];
+  let gameLanguages;
+  gameLanguages = languageMap.map(([long, short]) => (
+    <Radio
+      key={long}
+      onChange={onChange}
+      language={language}
+      languageValue={short}
+      languageLabel={long}
+    />
+  ));
   return (
     <div className="radios language-text">
       <span>

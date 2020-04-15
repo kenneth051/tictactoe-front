@@ -13,7 +13,7 @@ import { Game } from "../../../game/game";
      it("should render language component without fail",()=>{
          shallow(<Language/>)
      })
-     it("should render radio buttton componnt without fail", () => {
+     it("should render radio buttton component without fail", () => {
         const radio = language.find("Radio");
         expect(radio.length).toBe(3);
       });

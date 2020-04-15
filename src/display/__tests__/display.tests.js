@@ -23,24 +23,14 @@ describe("Display", () => {
     util.displayWinMessage(response, toast,fakeWin);
     expect(toast.successIsCalled()).toBe(true);
   });
-  it("should not call success toast if we have no winning message", () => {
-    const toast = new FakeToast();
-    const response = {};
-    util.displayWinMessage(response, toast);
-    expect(toast.successIsCalled()).toBe(false);
-  });
+
   it("should call info toast if we have a draw message", () => {
     const toast = new FakeToast();
     const response = { draw: true };
     util.displayDrawMessage(response, toast);
     expect(toast.infoIsCalled()).toBe(true);
   });
-  it("should not call info toast if we have no draw message", () => {
-    const toast = new FakeToast();
-    const response = {};
-    util.displayDrawMessage(response, toast);
-    expect(toast.infoIsCalled()).toBe(false);
-  });
+  
   it("should call error toast if we have an error message", () => {
     const toast = new FakeToast();
     util.displayErrors(["error"], toast);

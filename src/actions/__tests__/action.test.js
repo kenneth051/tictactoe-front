@@ -1,6 +1,7 @@
 import { Actions } from "../actions";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
+require("dotenv").config();
 
 const mock = new MockAdapter(axios);
 const actions = new Actions();
@@ -11,7 +12,7 @@ describe("Actions", () => {
       message: "game started successfully",
       game_data: { "1": " " }
     };
-    mock.onPost("http://localhost:9292/startgame").reply(200, response_data);
+    mock.onPost(process.env.REACT_APP_BASEURL + "startgame").reply(200, response_data);
     actions.startGame(12).then(response => {
       expect(response).toEqual(response_data);
       done();
@@ -22,7 +23,8 @@ describe("Actions", () => {
     const response_data = {
       game: []
     };
-    mock.onPost("http://localhost:9292/play").reply(200, response_data);
+
+    mock.onPost(process.env.REACT_APP_BASEURL + "play").reply(200, response_data);
     actions.playGame(12, 1, 1).then(response => {
       expect(response).toEqual(response_data);
       done();

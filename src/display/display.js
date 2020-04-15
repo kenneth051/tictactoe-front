@@ -14,21 +14,16 @@ export class Display {
       setBoard(board);
     }
   };
-  displayWinMessage = (response, toast, game) => {
-    if (response.win) {
+  displayWinMessage = (response, toast) => {
       toast.success(response.win, {
         autoClose: false,
         hideProgressBar: true
       });
-      game.win = true;
-    }
   };
   displayDrawMessage = (response, toast) => {
-    if (response.draw) {
       toast.info(response.draw, {
         autoClose: false,
         hideProgressBar: true
       });
-    }
   };
 }
