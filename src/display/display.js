@@ -1,13 +1,9 @@
 export class Display {
-  displayErrors = (errors, toast) => {
-    if (errors.length) {
-      errors.forEach(message => {
-        toast.error(message, {
-          autoClose: 4500,
-          hideProgressBar: true
-        });
-      });
-    }
+  displayErrors = (message, toast) => {
+    toast.error(message, {
+      autoClose: 4500,
+      hideProgressBar: true
+    });
   };
   displayBoardMoves = (board, setBoard) => {
     if (board) {
@@ -15,19 +11,15 @@ export class Display {
     }
   };
   displayWinMessage = (response, toast) => {
-    if (response.win) {
-      toast.success(response.win, {
-        autoClose: false,
-        hideProgressBar: true
-      });
-    }
+    toast.success(response.win, {
+      autoClose: false,
+      hideProgressBar: true
+    });
   };
   displayDrawMessage = (response, toast) => {
-    if (response.draw) {
-      toast.info(response.draw, {
-        autoClose: false,
-        hideProgressBar: true
-      });
-    }
+    toast.info(response.draw, {
+      autoClose: false,
+      hideProgressBar: true
+    });
   };
 }

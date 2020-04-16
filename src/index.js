@@ -6,6 +6,7 @@ import { Game } from "./game/game";
 import { Actions } from "./actions/actions";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as serviceWorker from "./serviceWorker";
+require("dotenv").config();
 
 ReactDOM.render(
   <React.StrictMode>

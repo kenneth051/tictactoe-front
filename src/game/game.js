@@ -1,12 +1,13 @@
 import { Display } from "../display/display";
 
 export class Game {
-  constructor(action, util = new Display()) {
+  constructor(action, display = new Display()) {
     this.gameId = 0;
     this.action = action;
-    this.util = util;
+    this.display = display;
     this.trackPlayers = [];
     this.language = "en";
+    this.win = false;
   }
   setlanguage(language) {
     this.language = language;
@@ -26,6 +27,7 @@ export class Game {
   }
 
   startGame = async () => {
+    this.win = false;
     this.trackPlayers = [];
     const response = await this.action.startGame();
     if (response.hasOwnProperty("game_data")) {
@@ -56,14 +58,35 @@ export class Game {
       draw: response.draw
     };
   };
+  isGameWon = (response, toast) => {
+    if (response.win) {
+      this.display.displayWinMessage(response, toast, this);
+      this.win = true;
+    }
+  };
+  isGameDrawn = (response, toast) => {
+    if (response.draw) {
+      this.display.displayDrawMessage(response, toast);
+    }
+  };
+  gameErrors = (errors, toast) => {
+    if (errors.length) {
+      errors.forEach(message => {
+        this.display.displayErrors(message, toast);
+      });
+    }
+  };
+
   playGame = async (position, toast, setBoard) => {
-    const response = await this.gameOutput({
-      position: position,
-      player: this.getGamePlayer()
-    });
-    this.util.displayBoardMoves(response.board, setBoard);
-    this.util.displayWinMessage(response, toast);
-    this.util.displayDrawMessage(response, toast);
-    this.util.displayErrors(response.error_messages, toast);
+    if (!this.win) {
+      const response = await this.gameOutput({
+        position: position,
+        player: this.getGamePlayer()
+      });
+      this.display.displayBoardMoves(response.board, setBoard);
+      this.isGameWon(response, toast);
+      this.isGameDrawn(response, toast);
+      this.gameErrors(response.error_messages, toast);
+    }
   };
 }
