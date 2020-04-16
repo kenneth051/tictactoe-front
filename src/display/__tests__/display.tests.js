@@ -19,8 +19,8 @@ describe("Display", () => {
   it("should call success toast if we have a winning message", () => {
     const toast = new FakeToast();
     const response = { win: true };
-    const fakeWin ={win:false}
-    util.displayWinMessage(response, toast,fakeWin);
+    const fakeWin = { win: false };
+    util.displayWinMessage(response, toast, fakeWin);
     expect(toast.successIsCalled()).toBe(true);
   });
 
@@ -30,15 +30,10 @@ describe("Display", () => {
     util.displayDrawMessage(response, toast);
     expect(toast.infoIsCalled()).toBe(true);
   });
-  
+
   it("should call error toast if we have an error message", () => {
     const toast = new FakeToast();
     util.displayErrors(["error"], toast);
     expect(toast.errorIsCalled()).toBe(true);
-  });
-  it("should not call error toast if we have no error message", () => {
-    const toast = new FakeToast();
-    util.displayErrors([], toast);
-    expect(toast.errorIsCalled()).toBe(false);
   });
 });

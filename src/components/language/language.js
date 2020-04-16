@@ -18,8 +18,7 @@ const Language = props => {
     ["French", "fr"],
     ["Kinyarwanda", "krw"]
   ];
-  let gameLanguages;
-  gameLanguages = languageMap.map(([long, short]) => (
+  const gameLanguages = languageMap.map(([long, short]) => (
     <Radio
       key={long}
       onChange={onChange}

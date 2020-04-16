@@ -68,9 +68,14 @@ describe("Game", () => {
       expect(game.isGameDrawn).toHaveBeenCalled();
     });
   });
-  it("should expect #playGame to call the displayErrors", () => {
-    game.playGame(4, 1, 1, {}, {}).then(() => {
+  it("should expect #gameErrors to call the displayErrors", () => {
+    game.gameErrors(["errors"],{})
       expect(fakeutil.displayErrorsisCalled()).toEqual(true);
+  });
+  it("should expect #gameErrors to have been called", () => {
+    game.gameErrors=jest.fn()
+    game.playGame(4, 1, 1, {}, {}).then(() => {
+      expect(game.gameErrors).toHaveBeenCalled();
     });
   });
   it("should expect #getGamePlayer to return player 1 for first move", () => {

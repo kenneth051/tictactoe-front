@@ -69,6 +69,14 @@ export class Game {
       this.display.displayDrawMessage(response, toast);
     }
   };
+  gameErrors = (errors, toast) => {
+    if (errors.length) {
+      errors.forEach(message => {
+        this.display.displayErrors(message, toast);
+      });
+    }
+  };
+
   playGame = async (position, toast, setBoard) => {
     if (!this.win) {
       const response = await this.gameOutput({
@@ -78,7 +86,7 @@ export class Game {
       this.display.displayBoardMoves(response.board, setBoard);
       this.isGameWon(response, toast);
       this.isGameDrawn(response, toast);
-      this.display.displayErrors(response.error_messages, toast);
+      this.gameErrors(response.error_messages, toast);
     }
   };
 }
